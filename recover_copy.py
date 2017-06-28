@@ -56,13 +56,13 @@ class CopyAction(object):
             try:
                 os.makedirs(path)
             except os.error as why:
-                self.elog.error(src, str(why))
+                self.elog.error(self.src, str(why))
 
 
 class Walker(object):
     def __init__(self, src_root, dest_root):
-        self.src_root = src_root
-        self.dest_root = dest_root
+        self.src_root = os.path.abspath(src_root)
+        self.dest_root = os.path.abspath(dest_root)
 
     def walk(self):
         for root, dirs, files in os.walk(self.src_root):
