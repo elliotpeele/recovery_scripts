@@ -45,8 +45,9 @@ class CopyAction(object):
     def run(self):
         self._mkdestPath(self.dest)
         try:
+            log.info('prepairing to copy %s -> %s', self.src, self.dest)
             shutil.copy2(self.src, self.dest)
-            log.info('%s -> %s', self.src, self.dest)
+            log.info('copying %s -> %s', self.src, self.dest)
         except (OSError, IOError) as e:
             self.elog.error(self.src, str(e))
 
